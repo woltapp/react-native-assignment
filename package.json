@@ -3,5 +3,9 @@
   "version": "1.0.0",
   "main": "index.js",
   "author": "Wolt",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "hapi": "^17.3.1",
+    "joi": "^13.1.2"
+  }
 }
