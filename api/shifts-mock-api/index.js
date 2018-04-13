@@ -34,6 +34,21 @@ const routes = [
     },
   },
   {
+    method: 'GET',
+    path: '/{id}',
+    handler: async ({ params }) => {
+      await delay(200);
+      return db.shifts.get(params.id);
+    },
+    config: {
+      validate: {
+        params: {
+          id: Joi.string().required(),
+        },
+      },
+    },
+  },
+  {
     method: 'POST',
     path: '/{id}/book',
     handler: async ({ params }) => {
@@ -45,7 +60,7 @@ const routes = [
     config: {
       validate: {
         params: {
-          id: Joi.required(),
+          id: Joi.string().required(),
         },
       },
     },
