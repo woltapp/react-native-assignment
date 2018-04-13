@@ -7,10 +7,6 @@ See __[documentation](api/README.md)__ for the API.
 
 The application must implement at least the following views:
 
-* __Overview__
-  * amount of booked shifts
-  * amount of bookable and available shifts
-  * amounts grouped by areas
 * __My shifts__ (booked shifts)
   * filter/select/group by area
   * filter/select/group by date
@@ -21,6 +17,19 @@ The application must implement at least the following views:
   * book cancelled/non-booked shifts
 
 Shifts must be bookable and cancellable according to the API documentation.
+
+In addition, the following optional view can be implemented:
+
+* __Overview__
+  * amount of booked shifts
+  * amount of bookable and available shifts
+  * amounts grouped by areas
+
+UI/UX considerations:
+
+* the design is up to the assignee and is part of the assignment
+* we expect the UI to follow good UX patterns
+* impress us with good visual style and animations
 
 Other considerations:
 
