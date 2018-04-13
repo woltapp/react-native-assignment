@@ -47,6 +47,19 @@ const routes = [
         throw Boom.notFound(`Shift not found with id ${params.id}`);
       } else if (shift.booked) {
         throw Boom.badRequest(`Shift ${params.id} is already booked`);
+      } else if (Date.now() >= shift.endTime) {
+        throw Boom.badRequest('Shift is already finished');
+      } else if (Date.now() > shift.startTime) {
+        throw Boom.badRequest('Shift has already started');
+      }
+
+      const allShifts = await db.shifts.list();
+      const overlappingShiftExists = !!allShifts
+        .filter(s => s.booked)
+        .find(s => s.startTime < shift.endTime && s.endTime > shift.startTime);
+
+      if (overlappingShiftExists) {
+        throw Boom.badRequest('Cannot book an overlapping shift');
       }
 
       await db.shifts.set(params.id, { booked: true });
