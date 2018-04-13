@@ -4,8 +4,19 @@
   "main": "index.js",
   "author": "Wolt",
   "license": "MIT",
+  "scripts": {
+    "start": "nodemon ./api/server.js --exec babel-node"
+  },
   "dependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
     "hapi": "^17.3.1",
-    "joi": "^13.1.2"
+    "joi": "^13.1.2",
+    "nodemon": "^1.17.3"
+  },
+  "babel": {
+    "presets": [
+      "env"
+    ]
   }
 }

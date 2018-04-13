@@ -1,5 +1,3 @@
-const Joi = require('joi');
-
 const routes = [
   {
     method: 'GET',
@@ -18,4 +16,4 @@ const plugin = {
   },
 };
 
-module.exports.plugin = plugin;
+export { plugin };
