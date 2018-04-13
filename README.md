@@ -7,15 +7,15 @@ See __[documentation](api/README.md)__ for the API.
 
 The application must implement at least the following views:
 
-* Overview
+* __Overview__
   * amount of booked shifts
   * amount of bookable and available shifts
   * amounts grouped by areas
-* My shifts (booked shifts)
+* __My shifts__ (booked shifts)
   * filter/select/group by area
   * filter/select/group by date
   * cancel shifts
-* Shifts list
+* __Shifts__ (all shifts)
   * filter/select/group by area
   * filter/select/group by date
   * book cancelled/non-booked shifts
