@@ -1,9 +1,35 @@
+import Joi from 'joi';
+import uuid from 'uuid/v4';
+
+import { createMockDb } from './db';
+
+const createMockShift = (values) => Object.assign({
+  id: uuid(),
+  booked: false,
+}, values);
+
+const db = createMockDb({
+  shifts: [
+    createMockShift({ id: 'testid' }),
+  ],
+});
+
 const routes = [
   {
     method: 'GET',
     path: '/',
+    handler: () => db.shifts.list(),
+  },
+  {
+    method: 'POST',
+    path: '/{id}/book',
+    handler: ({ params }) => db.shifts.set(params.id, { booked: true }),
     config: {
-      handler: () => ({ test: 'test' }),
+      validate: {
+        params: {
+          id: Joi.required(),
+        },
+      },
     },
   },
 ];
