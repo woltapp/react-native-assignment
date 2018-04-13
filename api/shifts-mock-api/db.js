@@ -7,10 +7,7 @@ const createMockDb = (initialValues = {}) => {
     list: async () => dataSet,
     get: async (id) => dataSet.find(d => d.id === id),
     set: async (id, data) => {
-      dataSet = dataSet.map(d => d.id === id
-        ? Object.assign(d, data)
-        : data);
-
+      dataSet = dataSet.map(d => d.id === id ? Object.assign(d, data) : d);
       return true;
     },
   })
