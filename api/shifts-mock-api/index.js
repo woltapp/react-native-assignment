@@ -1,28 +1,11 @@
 import Joi from 'joi';
-import uuid from 'uuid/v4';
-import { DateTime } from 'luxon';
+import Boom from 'boom';
 
+import { delay } from './utils';
 import { createMockDb } from './db';
+import mockShifts from './mockShifts';
 
-const createMockShift = (values) => Object.assign({
-  id: uuid(),
-  booked: false,
-}, values);
-
-const shiftTime = dateObj => DateTime.fromObject(dateObj).valueOf();
-
-const db = createMockDb({
-  shifts: [
-    createMockShift({
-      id: 'testid',
-      area: 'Helsinki',
-      startTime: shiftTime({ hour: 12 }),
-      endTime: shiftTime({ hour: 14 }),
-    }),
-  ],
-});
-
-const delay = timeout => new Promise(resolve => setTimeout(resolve, timeout));
+const db = createMockDb({ shifts: mockShifts });
 
 const routes = [
   {
@@ -37,8 +20,14 @@ const routes = [
     method: 'GET',
     path: '/{id}',
     handler: async ({ params }) => {
+      const shift = await db.shifts.get(params.id);
       await delay(200);
-      return db.shifts.get(params.id);
+
+      if (!shift) {
+        throw Boom.notFound(`Shift not found with id ${params.id}`);
+      }
+
+      return shift;
     },
     config: {
       validate: {
@@ -52,8 +41,16 @@ const routes = [
     method: 'POST',
     path: '/{id}/book',
     handler: async ({ params }) => {
-      await delay(500);
+      const shift = await db.shifts.get(params.id);
+
+      if (!shift) {
+        throw Boom.notFound(`Shift not found with id ${params.id}`);
+      } else if (shift.booked) {
+        throw Boom.badRequest(`Shift ${params.id} is already booked`);
+      }
+
       await db.shifts.set(params.id, { booked: true });
+      await delay(500);
 
       return 'OK';
     },
@@ -69,8 +66,16 @@ const routes = [
     method: 'POST',
     path: '/{id}/cancel',
     handler: async ({ params }) => {
-      await delay(500);
+      const shift = await db.shifts.get(params.id);
+
+      if (!shift) {
+        throw Boom.notFound(`Shift not found with id ${params.id}`);
+      } else if (!shift.booked) {
+        throw Boom.badRequest('Cannot cancel shift that is not booked');
+      }
+
       await db.shifts.set(params.id, { booked: false });
+      await delay(500);
 
       return 'OK';
     },
