@@ -65,7 +65,7 @@ const routes = [
       await db.shifts.set(params.id, { booked: true });
       await delay(500);
 
-      return 'OK';
+      return db.shifts.get(params.id);
     },
     config: {
       validate: {
@@ -90,7 +90,7 @@ const routes = [
       await db.shifts.set(params.id, { booked: false });
       await delay(500);
 
-      return 'OK';
+      return db.shifts.get(params.id);
     },
     config: {
       validate: {

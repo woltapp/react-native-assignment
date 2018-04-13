@@ -4,6 +4,7 @@
 
 * `id`: UUID, a unique identifier
 * `area`: String, an identifier for an area, one of: 'Helsinki', 'Tampere', 'Turku'
+* `booked`: Boolean, true if booked, false if not booked
 * `startTime`: Int, Unix epoch timestamp, the starting time for the shift
 * `endTime`: Int, Unix epoch timestamp, the ending time for the shift
 
@@ -69,8 +70,14 @@ Example:
 
 `POST /shifts/95a2aaca-bab8-4504-8646-f75b325ec0e7/book`
 
-```
-OK
+```json
+{
+  "id": "95a2aaca-bab8-4504-8646-f75b325ec0e7",
+  "booked": true,
+  "area": "Helsinki",
+  "startTime": 1523610000000,
+  "endTime": 1523617200000
+}
 ```
 
 ### `POST /shifts/{id}/cancel`
@@ -84,8 +91,14 @@ Example:
 
 `POST /shifts/95a2aaca-bab8-4504-8646-f75b325ec0e7/cancel`
 
-```
-OK
+```json
+{
+  "id": "95a2aaca-bab8-4504-8646-f75b325ec0e7",
+  "booked": false,
+  "area": "Helsinki",
+  "startTime": 1523610000000,
+  "endTime": 1523617200000
+}
 ```
 
 ---
