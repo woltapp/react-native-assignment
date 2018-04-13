@@ -1,5 +1,6 @@
 import Joi from 'joi';
 import uuid from 'uuid/v4';
+import { DateTime } from 'luxon';
 
 import { createMockDb } from './db';
 
@@ -8,22 +9,56 @@ const createMockShift = (values) => Object.assign({
   booked: false,
 }, values);
 
+const shiftTime = dateObj => DateTime.fromObject(dateObj).valueOf();
+
 const db = createMockDb({
   shifts: [
-    createMockShift({ id: 'testid' }),
+    createMockShift({
+      id: 'testid',
+      area: 'Helsinki',
+      startTime: shiftTime({ hour: 12 }),
+      endTime: shiftTime({ hour: 14 }),
+    }),
   ],
 });
+
+const delay = timeout => new Promise(resolve => setTimeout(resolve, timeout));
 
 const routes = [
   {
     method: 'GET',
     path: '/',
-    handler: () => db.shifts.list(),
+    handler: async () => {
+      await delay(500);
+      return db.shifts.list();
+    },
   },
   {
     method: 'POST',
     path: '/{id}/book',
-    handler: ({ params }) => db.shifts.set(params.id, { booked: true }),
+    handler: async ({ params }) => {
+      await delay(500);
+      await db.shifts.set(params.id, { booked: true });
+
+      return 'OK';
+    },
+    config: {
+      validate: {
+        params: {
+          id: Joi.required(),
+        },
+      },
+    },
+  },
+  {
+    method: 'POST',
+    path: '/{id}/cancel',
+    handler: async ({ params }) => {
+      await delay(500);
+      await db.shifts.set(params.id, { booked: false });
+
+      return 'OK';
+    },
     config: {
       validate: {
         params: {
