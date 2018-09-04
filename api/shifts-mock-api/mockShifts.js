@@ -84,7 +84,7 @@ export default [
   createMockShift({
     area: 'Helsinki',
     startTime: shiftTime({ hour: 12 }, 1),
-    endTime: shiftTime({ hour: 14 }),
+    endTime: shiftTime({ hour: 14 }, 1),
   }),
   createMockShift({
     area: 'Helsinki',
@@ -94,7 +94,7 @@ export default [
   createMockShift({
     area: 'Turku',
     startTime: shiftTime({ hour: 12 }, 1),
-    endTime: shiftTime({ hour: 14 }),
+    endTime: shiftTime({ hour: 14 }, 1),
   }),
   createMockShift({
     area: 'Helsinki',
@@ -105,7 +105,7 @@ export default [
   createMockShift({
     area: 'Turku',
     startTime: shiftTime({ hour: 9 }, 3),
-    endTime: shiftTime({ hour: 10 }),
+    endTime: shiftTime({ hour: 10 }, 3),
   }),
   createMockShift({
     area: 'Turku',
@@ -115,7 +115,7 @@ export default [
   createMockShift({
     area: 'Turku',
     startTime: shiftTime({ hour: 12, minutes: 30 }, 3),
-    endTime: shiftTime({ hour: 15 }),
+    endTime: shiftTime({ hour: 15 }, 3),
   }),
   createMockShift({
     area: 'Helsinki',
@@ -146,7 +146,7 @@ export default [
   createMockShift({
     area: 'Helsinki',
     startTime: shiftTime({ hour: 9 }, 4),
-    endTime: shiftTime({ hour: 11 }),
+    endTime: shiftTime({ hour: 11 }, 4),
   }),
   createMockShift({
     area: 'Helsinki',
@@ -156,17 +156,17 @@ export default [
   createMockShift({
     area: 'Helsinki',
     startTime: shiftTime({ hour: 12 }, 4),
-    endTime: shiftTime({ hour: 15 }),
+    endTime: shiftTime({ hour: 15 }, 4),
   }),
   createMockShift({
     area: 'Helsinki',
     startTime: shiftTime({ hour: 18 }, 4),
-    endTime: shiftTime({ hour: 21 }),
+    endTime: shiftTime({ hour: 21 }, 4),
   }),
   createMockShift({
     area: 'Tampere',
     startTime: shiftTime({ hour: 9 }, 4),
-    endTime: shiftTime({ hour: 12 }),
+    endTime: shiftTime({ hour: 12 }, 4),
   }),
   createMockShift({
     area: 'Tampere',
@@ -176,11 +176,11 @@ export default [
   createMockShift({
     area: 'Tampere',
     startTime: shiftTime({ hour: 15 }, 4),
-    endTime: shiftTime({ hour: 18 }),
+    endTime: shiftTime({ hour: 18 }, 4),
   }),
   createMockShift({
     area: 'Tampere',
     startTime: shiftTime({ hour: 17 }, 4),
-    endTime: shiftTime({ hour: 20 }),
+    endTime: shiftTime({ hour: 20 }, 4),
   }),
 ];
