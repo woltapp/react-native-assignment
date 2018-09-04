@@ -5,38 +5,31 @@
 Implement a shift booking application with React Native and utilize the provided mock API.
 See __[documentation](api/README.md)__ for the API.
 
-The application must implement at least the following views:
+The application must implement the following views according the [design spec](./design-spec.pdf):
 
-* __My shifts__ (booked shifts)
-  * filter/select/group by area
-  * filter/select/group by date
-  * cancel shifts
-* __Shifts__ (all shifts)
-  * filter/select/group by area
-  * filter/select/group by date
-  * book cancelled/non-booked shifts
+* __My shifts__
+  * lists all booked shifts
+  * shifts are grouped by dates
+  * shifts can be cancelled
+* __Available shifts__
+  * filter shifts by the city
+  * shifts are grouped by dates
+  * shifts can be booked or cancelled
 
-Shifts must be bookable and cancellable according to the API documentation.
+Relevant assets can be found in [`./assets`](./assets).
 
-In addition, the following optional view can be implemented:
+Considerations:
 
-* __Overview__
-  * amount of booked shifts
-  * amount of bookable and available shifts
-  * amounts grouped by areas
+* we expect clean and robust state management
+* we do not expect you to use a lot of time for the setup - you may use a starter repo
+* the UI design is a reference and 1:1 implementation is not absolutely necessary
+* creative skills can be used to improve the design
 
-UI/UX considerations:
-
-* the design is up to the assignee and is part of the assignment
-* we expect the UI to follow good UX patterns
-* impress us with good visual style and animations
-
-Other considerations:
+Submission:
 
 * the API is not required to be included in the answer, but can be
 * include instructions how to run the app
-* 3rd party libraries may be used; include short explanation why they are used
-
+* 3rd party libraries may be used
 
 ## Mock API run instructions
 
